@@ -1,26 +1,29 @@
-# counter.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Counter {
-    // State variable to store the count
-    uint256 public count;
+contract OnChainPuzzle {
+    // Define possible moves as strings (for simplicity)
+    // In a more advanced version, you'd use enums for gas efficiency.
 
-    // Function to increment the count by 1
-    function increment() public {
-        count += 1;
+    // Mapping to store each player's move sequence
+    mapping(address => string[]) public playerMoves;
+
+    // Event to announce when a player submits a move
+    event MoveSubmitted(address indexed player, string move);
+
+    // Submit a single move
+    function submitMove(string memory _move) public {
+        playerMoves[msg.sender].push(_move);
+        emit MoveSubmitted(msg.sender, _move);
     }
 
-    // Function to decrement the count by 1
-    function decrement() public {
-        // Prevents underflow (count going below 0)
-        if (count > 0) {
-            count -= 1;
-        }
+    // Get all moves a player has made
+    function getMoves(address _player) public view returns (string[] memory) {
+        return playerMoves[_player];
     }
 
-    // Function to get the current count (optional since 'count' is public)
-    function getCount() public view returns (uint256) {
-        return count;
+    // Reset a player’s moves (for starting a new game)
+    function resetMoves() public {
+        delete playerMoves[msg.sender];
     }
 }
