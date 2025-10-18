@@ -9,7 +9,7 @@ Contract Name: OnChainPuzzle
 
 Network: (Specify your network — e.g., Ethereum Sepolia / Polygon Testnet / Remix VM)
 
-Deployed Address: 0x68f52d94595a9272948f95114A06cD35e92C9CAB
+Deployed Address: [0x68f52d94595a9272948f95114A06cD35e92C9CAB]
 
 License: MIT
 
